@@ -3,7 +3,7 @@ import { TodoSearch } from './TodoSearch';
 import { TodoList } from './TodoList';
 import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
-//import React from 'react';
+import React from 'react';
 
 const defaultTodo = [
   { text: 'Costar cebolla', completed: true},
@@ -14,12 +14,18 @@ const defaultTodo = [
 ];
 
 function App() {
+  const [todos, setTodos] = React.useState(defaultTodo);
+  const [searchValue, setSearchValue ] = React.useState('');
+
+  const completedTodos= todos.filter(todo =>  todo.completed).length;
+  const totalTodos = todos.length;
+
   return (
     // <React.Fragment> == <>
     <>
     
-      <TodoCounter completed={16} total={25}/>
-      <TodoSearch/>
+      <TodoCounter completed={completedTodos} total={totalTodos}/>
+      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue}/>
 
       <TodoList>
         { defaultTodo.map(todo => (
