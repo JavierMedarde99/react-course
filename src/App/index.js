@@ -27,7 +27,21 @@ function App() {
     todo => { return todo.text.toLowerCase().includes(searchValue.toLowerCase()) }
   )
 
+  console.log("log 1");
 
+  /*React.useEffect(() =>{
+    console.log("looooooooog 2");
+  });*/
+
+ /* React.useEffect(() =>{
+    console.log("looooooooog 2");
+  },[]);*/
+  
+  React.useEffect(() =>{
+    console.log("looooooooog 2");
+  },[totalTodos]);
+
+  console.log("log 3");
 
   const completeTodo = (text) => {
     const newTodos = [...todos];
