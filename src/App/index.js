@@ -17,7 +17,7 @@ localStorage.removeItem('TODOS_V1');*/
 
 function App() {
 
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1',[]);
+  const {item: todos, saveItem: saveTodos,loading,error} = useLocalStorage('TODOS_V1',[]);
   const [searchValue, setSearchValue] = React.useState('');
 
   const completedTodos = todos.filter(todo => todo.completed).length;
@@ -27,21 +27,7 @@ function App() {
     todo => { return todo.text.toLowerCase().includes(searchValue.toLowerCase()) }
   )
 
-  console.log("log 1");
 
-  /*React.useEffect(() =>{
-    console.log("looooooooog 2");
-  });*/
-
- /* React.useEffect(() =>{
-    console.log("looooooooog 2");
-  },[]);*/
-  
-  React.useEffect(() =>{
-    console.log("looooooooog 2");
-  },[totalTodos]);
-
-  console.log("log 3");
 
   const completeTodo = (text) => {
     const newTodos = [...todos];
@@ -66,7 +52,9 @@ function App() {
     setSearchValue={setSearchValue}
     searchedTodos={searchedTodos}
     completeTodo={completeTodo}
-    deleteTodo={deleteTodo}/>
+    deleteTodo={deleteTodo}
+    loading={loading}
+    error={error}/>
     //</React.Fragment> == </>
   );
 }
